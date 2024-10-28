@@ -1,0 +1,4 @@
+1- Agregar is_staff y is_superuser al serializer de usuarios
+2- Agregar search_fields necesarios en el serializer
+3- Testear el serializer y probar las API de maestro detalles
+4- Agregar y reforzar un poco mas la documentacion de las API
