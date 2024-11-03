@@ -30,9 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lw@15ak)!657tp4g89objt0^8*=73v!u=ym($ky7ydem6+qg-l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
-] + CATALOGOS_SETTING_APP + MOVIMIENTOS_SETTING_APP + SEGURIDAD_SETTING_APP
+                 ] + CATALOGOS_SETTING_APP + MOVIMIENTOS_SETTING_APP + SEGURIDAD_SETTING_APP
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,13 +81,28 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite1',
     }
 }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',  # Utilizamos el backend mssql-django
+        'NAME': 'DBVeterinaria',  # Nombre de la base de datos
+        'HOST': 'DESKTOP-KGO277I\MSSQLSERVER01',  # IP del servidor SQL Server o Nombre de tu PC
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',  # Driver ODBC instalado
+            'trusted_connection': 'yes',  # Habilita la autenticación de Windows
+            'extra_params': 'TrustServerCertificate=yes',  # Útil si estás usando SSL sin un certificado de confianza
+        },
+    }
+}
+"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -114,10 +129,12 @@ AUTH_PASSWORD_VALIDATORS = [
      #'DEFAULT_PERMISSION_CLASSES': (
          #'rest_framework.permissions.IsAuthenticated',
      #),
+     #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+     #'PAGE_SIZE' = 10,
 #}
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Token de 30 minutos
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Token de 5 minutos
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Token de refresco de 1 día
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,

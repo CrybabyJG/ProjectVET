@@ -7,7 +7,7 @@ class Cita(models.Model):
     ID_Cita = models.AutoField(primary_key=True)
     Codigo_Cita = models.CharField(max_length=10, verbose_name='Codigo Cita', unique=True)
     Fecha_Realizacion = models.DateField(verbose_name='Fecha de realizacion', auto_now_add=True)
-    Fecha_de_Cita = models.DateField(verbose_name='Fecha para cita', auto_now_add=True)
+    Fecha_de_Cita = models.DateField(verbose_name='Fecha para cita')
     Peso = models.CharField(max_length=30, verbose_name='Peso')
     ID_EstadoCita = models.ForeignKey(EstadodeCita, verbose_name='Estado de la cita',on_delete=models.PROTECT)
     ID_Mascota = models.ForeignKey(Mascota, verbose_name='Mascota',on_delete=models.PROTECT)

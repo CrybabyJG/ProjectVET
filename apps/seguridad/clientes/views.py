@@ -32,6 +32,7 @@ class ClientesViewSet(viewsets.ViewSet):
         serializer = ClientesSerializer(cliente)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=ClientesSerializer, responses={201: ClientesSerializer})
     def create(self, request):
         """
         Crea un nuevo cliente.
