@@ -54,6 +54,7 @@ class CitaAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Cita_Detalle_details(APIView):
+
     @swagger_auto_schema(responses={200: CitaSerializer()})
     def get(self, request, pk):
         # Obtiene la cita por ID

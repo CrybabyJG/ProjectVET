@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, CharField
 from .models import Cita, Detalle_Cita
 
+
 class DetalleCitaSerializer(ModelSerializer):
     Nombre_enfermedad = CharField(source='ID_Enfermedades.Descripcion', read_only=True)
     class Meta:

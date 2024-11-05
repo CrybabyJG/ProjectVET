@@ -7,11 +7,15 @@ from rest_framework import status
 from .models import UnidadMedida
 from .serializers import UnidadMedidaSerializer
 from drf_yasg.utils import swagger_auto_schema
+from apps.seguridad.permissions import CustomPermission
+from rest_framework.permissions import IsAuthenticated
 
 class UnidadMedidaAPIView(APIView):
     """
     Vista para listar todas las unidades de medida o crear una nueva unidad de medida.
     """
+    permission_classes = [IsAuthenticated, CustomPermission]
+    model = UnidadMedida
 
     @swagger_auto_schema(responses={200: UnidadMedidaSerializer(many=True)})
     def get(self, request):

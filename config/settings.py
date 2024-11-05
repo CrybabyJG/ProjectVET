@@ -30,9 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lw@15ak)!657tp4g89objt0^8*=73v!u=ym($ky7ydem6+qg-l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite1',
     }
 }
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',  # Utilizamos el backend mssql-django
@@ -101,7 +101,6 @@ DATABASES = {
         },
     }
 }
-"""
 
 
 # Password validation
@@ -122,16 +121,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#REST_FRAMEWORK = {
-    #'DEFAULT_AUTHENTICATION_CLASSES': (
-        #'rest_framework_simplejwt.authentication.JWTAuthentication',
-    #),
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
      #'DEFAULT_PERMISSION_CLASSES': (
          #'rest_framework.permissions.IsAuthenticated',
-     #),
-     #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-     #'PAGE_SIZE' = 10,
-#}
+     #)
+}
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Token de 5 minutos

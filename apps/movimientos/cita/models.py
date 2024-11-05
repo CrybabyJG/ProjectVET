@@ -23,8 +23,8 @@ class Detalle_Cita(models.Model):
     ID_DetalleCita = models.AutoField(primary_key=True)
     Codigo_DetalleCita = models.CharField(max_length=10, verbose_name='Codigo de detalle cita', unique=True)
     Descripcion = models.CharField(max_length=200, verbose_name='Descripcion')
-    ID_Enfermedades = models.ForeignKey(Enfermedades, related_name='Detalles', on_delete=models.PROTECT)
-    ID_Cita = models.ForeignKey(Cita, verbose_name='Cita No', on_delete=models.PROTECT)
+    ID_Enfermedades = models.ForeignKey(Enfermedades, verbose_name='Enfermedad', on_delete=models.PROTECT)
+    ID_Cita = models.ForeignKey(Cita, related_name='detalles', verbose_name='Cita No', on_delete=models.PROTECT)
 
     class Meta:
         verbose_name_plural = 'Detalles de Citas'

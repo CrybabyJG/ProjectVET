@@ -1,5 +1,5 @@
-from .settings import *
+#from .settings import *
 
-DEBUG = False
+#DEBUG = False
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
