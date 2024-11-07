@@ -92,8 +92,8 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',  # Utilizamos el backend mssql-django
-        'NAME': 'DBVeterinaria',  # Nombre de la base de datos
-        'HOST': 'DESKTOP-KGO277I\MSSQLSERVER01',  # IP del servidor SQL Server o Nombre de tu PC
+        'NAME': 'VETERINARIA',  # Nombre de la base de datos
+        'HOST': 'NATHALY\MSSQLSERVER01',  # IP del servidor SQL Server o Nombre de tu PC
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',  # Driver ODBC instalado
             'trusted_connection': 'yes',  # Habilita la autenticación de Windows

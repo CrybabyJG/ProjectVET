@@ -12,14 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Enfermedades',
+            name='EstadodeVenta',
             fields=[
-                ('ID_Enfermedades', models.AutoField(primary_key=True, serialize=False)),
-                ('Codigo_Enfermedades', models.CharField(max_length=10, unique=True, verbose_name='Codigo de enfermedad')),
+                ('ID_EstadoVenta', models.AutoField(primary_key=True, serialize=False)),
+                ('Codigo_EstadoVenta', models.CharField(max_length=10, verbose_name='Codigo de estado de venta')),
                 ('Descripcion', models.CharField(max_length=200, verbose_name='Descripcion')),
             ],
             options={
-                'verbose_name_plural': 'Enfermedades',
+                'verbose_name_plural': 'Estados de ventas',
             },
         ),
     ]

@@ -8,7 +8,9 @@ class DetalleCompraSerializer(ModelSerializer):
         fields = ['ID_Medicamento', 'Nombre_Medicamento', 'Cantidad']
 
 class CompraSerializer(ModelSerializer):
+    Nombre_Proveedor = CharField(source='ID_Proveedor.Empresa', read_only=True)
+    Nombre_Estado = CharField(source='ID_EstadoCompra.Descripcion', read_only=True)
     detalles = DetalleCompraSerializer(many=True)
     class Meta:
         model = Compra
-        fields = ['Codigo_Compra', 'Descripcion', 'detalles']
+        fields = ['Codigo_Compra', 'ID_Proveedor', 'Nombre_Proveedor', 'Descripcion', 'ID_EstadoCompra','Nombre_Estado', 'detalles']

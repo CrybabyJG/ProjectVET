@@ -1,4 +1,6 @@
 from django.db import models
+
+from apps.catalogos.estado_venta.models import EstadodeVenta
 from apps.seguridad.clientes.models import Clientes
 from apps.catalogos.medicamento.models import Medicamento
 # Create your models here.
@@ -8,6 +10,7 @@ class Venta(models.Model):
     Descripcion = models.CharField(max_length=200, verbose_name='Descripcion')
     Fecha = models.DateField(verbose_name='Fecha', auto_now_add=True)
     ID_Cliente = models.ForeignKey(Clientes, verbose_name='Nombre del cliente', on_delete=models.PROTECT)
+    ID_EstadoVenta = models.ForeignKey(EstadodeVenta, verbose_name='Estado de la venta', on_delete=models.PROTECT)
 
     class Meta:
         verbose_name_plural = 'Ventas'

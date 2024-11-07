@@ -1,5 +1,9 @@
 from django.db import models
+
+from apps.catalogos.estado_compra.models import EstadodeCompra
 from apps.catalogos.medicamento.models import Medicamento
+from apps.catalogos.proveedor.models import Proveedor
+
 
 # Create your models here.
 class Compra(models.Model):
@@ -7,7 +11,9 @@ class Compra(models.Model):
     Codigo_Compra = models.CharField(max_length=10, verbose_name='Codigo de compra', unique=True)
     Descripcion = models.CharField(max_length=200, verbose_name='Descripcion')
     Fecha = models.DateField(verbose_name='Fecha', auto_now_add=True)
-#AQUI RELLENAR CAMPO DE PROVEEDOR MAS ADELANTE SI SE DESEEA
+    ID_Proveedor = models.ForeignKey(Proveedor, verbose_name='proveedor', on_delete=models.PROTECT)
+    ID_EstadoCompra = models.ForeignKey(EstadodeCompra, verbose_name='Estado de la compra', on_delete=models.PROTECT)
+
     class Meta:
         verbose_name_plural = 'Compras'
 
