@@ -10,6 +10,9 @@ from drf_yasg.utils import swagger_auto_schema
 from apps.seguridad.permissions import CustomPermission
 from rest_framework.permissions import IsAuthenticated
 from config.utils.Pagination import PaginationMixin
+import logging.handlers
+
+logger = logging.getLogger(__name__)
 
 class UnidadMedidaAPIView(PaginationMixin,APIView):
     """
@@ -23,6 +26,7 @@ class UnidadMedidaAPIView(PaginationMixin,APIView):
         """
         Listar todas las unidades de medida.
         """
+        logger.info("Peticion GET para lista todas las Unidades de Medida")
         unidad_medida = UnidadMedida.objects.all().order_by('ID_Unidad_Medida')
         page = self.paginate_queryset(unidad_medida, request)
 

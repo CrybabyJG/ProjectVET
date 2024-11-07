@@ -18,6 +18,8 @@ from django.conf.global_settings import AUTH_USER_MODEL
 from apps.catalogos.catalogos_app_setting import CATALOGOS_SETTING_APP
 from apps.movimientos.movimientos_app_setting import MOVIMIENTOS_SETTING_APP
 from apps.seguridad.seguridad_app_setting import SEGURIDAD_SETTING_APP
+from config.utils.logging_config import ANSIColorFormatter
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +35,39 @@ SECRET_KEY = 'django-insecure-lw@15ak)!657tp4g89objt0^8*=73v!u=ym($ky7ydem6+qg-l
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# Configura los detalles de conexión a Papertrail
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'custom_format': {
+            '()': ANSIColorFormatter,
+            'format': '%(asctime)s | %(levelname)s | %(name)s | %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S',  # Formato de fecha y hora
+        },
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'custom_format',  # Usa el formato personalizado
+        },
+        'papertrail': {
+            'level': 'INFO',
+            'class': 'logging.handlers.SysLogHandler',
+            'formatter': 'custom_format',  # Usa el formato personalizado para Papertrail
+            'address': (config('HOST_PAPERTRAIL'), int(config('PORT_PAPERTRAIL'))),
+        },
+    },
+    'root': {
+        'handlers': ['console', 'papertrail'],
+        'level': 'DEBUG',
+    },
+}
 
 
 # Application definition
