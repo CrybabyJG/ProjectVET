@@ -9,8 +9,9 @@ from .serializers import UnidadMedidaSerializer
 from drf_yasg.utils import swagger_auto_schema
 from apps.seguridad.permissions import CustomPermission
 from rest_framework.permissions import IsAuthenticated
+from config.utils.Pagination import PaginationMixin
 
-class UnidadMedidaAPIView(APIView):
+class UnidadMedidaAPIView(PaginationMixin,APIView):
     """
     Vista para listar todas las unidades de medida o crear una nueva unidad de medida.
     """
@@ -22,6 +23,13 @@ class UnidadMedidaAPIView(APIView):
         """
         Listar todas las unidades de medida.
         """
+        unidad_medida = UnidadMedida.objects.all().order_by('ID_Unidad_Medida')
+        page = self.paginate_queryset(unidad_medida, request)
+
+        if page is not None:
+            serializer = UnidadMedidaSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
         unidades_medida = UnidadMedida.objects.all()
         serializer = UnidadMedidaSerializer(unidades_medida, many=True)
         return Response(serializer.data)
